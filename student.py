@@ -12,7 +12,6 @@ class Student:
     def __init__(self, first, last, username, password):
         self.firstName = first
         self.lastName = last
-        # self.fullName = first + " " + last
         # self.myCourses = course if courses is not None else []
         self.userName = username
         hashed = bcrypt.hashpw(password.encode(), bcrypt.gensalt())
