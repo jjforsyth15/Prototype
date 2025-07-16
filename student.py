@@ -9,13 +9,18 @@ students = db["STUDENTS"]
 courses = db["COURSES"]
 
 class Student: 
+    # constructor for Student class. Takes in first name, last name, username, and password
     def __init__(self, first, last, username, password):
         self.firstName = first
         self.lastName = last
-        # self.myCourses = course if courses is not None else []
+        # self.myCourses = course if courses is not None else []  -- will add later
         self.userName = username
-        hashed = bcrypt.hashpw(password.encode(), bcrypt.gensalt())
 
+        #hashes passworf
+        hashed = bcrypt.hashpw(password.encode(), bcrypt.gensalt())
+        password = "" # erases password in Student class for security - still exists in database
+        
+        # checks if student already exists - might not need later
         if students.find_one({"firstName": first, "lastName": last}):
             print("Student already exists")
         else:
@@ -27,6 +32,7 @@ class Student:
                 # "courses": course
             })
 
+    # how Student is displayed -- will need to update to look better
     def __str__(self):
         return f"Student: {self.firstName} {self.lastName}, Courses: {', '.join(self.myCoursesourses)}"
     
@@ -37,6 +43,7 @@ class Student:
     #         "courses": self.myCourses
     #     }
     
+    # method to add a course to Student
     def add_course(self, courseToAdd):
         from course import Course   
         self.myCourses.append(courseToAdd)
@@ -48,4 +55,8 @@ class Student:
         print(courseToAdd)
 
 
+    # method to remove a course from Student
+    # def remove_course(self, courseToRemove):
+    #     from course import Course
+    #     #need to complete
 
