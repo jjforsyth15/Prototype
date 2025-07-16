@@ -13,16 +13,16 @@ courses = db["COURSES"]
 
 #Main
 def main():
-    #Just practice examples
-    james = Student("James", "Madison")
-    print(james)
+    # #Just practice examples
+    # james = Student("James", "Madison")
+    # print(james)
 
-    history = Course("History 101", "1024")
+    # history = Course("History 101", "1024")
 
-    print(students.find_one({"firstName": james.firstName, "lastName": james.lastName}))
+    # print(students.find_one({"firstName": james.firstName, "lastName": james.lastName}))
 
-    print(history)
-    print(courses.find_one({"courseName": history.courseName, "courseNumber": history.courseNumber}))
+    # print(history)
+    # print(courses.find_one({"courseName": history.courseName, "courseNumber": history.courseNumber}))
 
     #Menu loop
     while True:
@@ -34,7 +34,9 @@ def main():
             print("1")
             first = input("Enter first name of student: ")
             last = input("Enter last name of student: ")
-            new_student = Student(first, last)
+            user_name = input("Enter a username: ")
+            password = input("Enter a password: ")
+            new_student = Student(first, last, user_name, password)
             print("New student has been made: ", 
                   students.find_one({"firstName": first, "lastName": last}))
         
@@ -82,6 +84,7 @@ def main():
             break
         else:
             print("Invalid input. Try again")
+
 
 main()
 
